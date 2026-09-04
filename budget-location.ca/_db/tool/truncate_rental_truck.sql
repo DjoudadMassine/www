@@ -1,0 +1,2 @@
+TRUNCATE TABLE rental;
+TRUNCATE TABLE truck;

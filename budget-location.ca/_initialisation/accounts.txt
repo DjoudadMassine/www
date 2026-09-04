@@ -1,0 +1,7 @@
+admin
+aaa@aaa.com
+12345
+
+client
+bbb@bbb.com
+12345
