@@ -1,6 +1,7 @@
 import ResponseManager from '#utils/response-magager.js';
 import ProductView from '#views/product-view.js';
-import ProductModel from '#models/product-model/js';
+import ProductModel from '#models/product-model.js';
+import ErrorTypes from '#utils/error-types.js';
 
 const ProductController = {
 

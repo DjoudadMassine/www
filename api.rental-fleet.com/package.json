@@ -14,8 +14,8 @@
     "#utils/*": "./src/utils/*",
     "#views/*": "./src/views/*",
     "#config": "./src/configs/index.js",
-    "#infrastructure": "./src/infrastructure/db.js",
-    "#models": "./src/models/product-model.js"
+    "#infrastructure": "./src/infrastructure/*",
+    "#models": "./src/models/*"
 
   },
   "dependencies": {
