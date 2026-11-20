@@ -1,3 +1,6 @@
+import { ErrorTypes } from "#tools";
+import DB_ERROR_CODES from "#configurations/db-error-codes.js";
+
 export function handleDBError(err) {
 
   switch (err.errno) {
@@ -17,4 +20,4 @@ export function handleDBError(err) {
   if (err.fatal) throw new ErrorTypes.DatabaseError();
 
   throw err; // unexpected — let it bubble up
-}
+};

@@ -1,6 +1,6 @@
 /* Custom error types */
 
-const ErrorTypes = {
+export const ErrorTypes = {
 
     // Database
 
@@ -11,7 +11,4 @@ const ErrorTypes = {
     DuplicateEntryError : class extends Error {
         constructor(msg) { super(msg); this.name = 'DuplicateEntryError'; }
     },
-
-}
-
-export default ErrorTypes;
+};

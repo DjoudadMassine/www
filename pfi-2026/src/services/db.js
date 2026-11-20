@@ -1,5 +1,5 @@
 import { createPool } from 'mariadb';
-import { DB_CONFIG } from '#configs';
+import DB_CONFIG from '#configurations/env.js';
 
 const pool = createPool({
      host: DB_CONFIG.host,

@@ -8,6 +8,8 @@ import matchRoute from '#middlewares/match-route.js';
 // Fonction qui créé la chaîne d'intergiciels
 import runMiddlewares from '#utils/run-middlewares.js';
 
+import handleCORS from '#middlewares/handle-cors.js';
+
 const PORT = 3000;
 
 const server = http.createServer();
@@ -25,6 +27,7 @@ server.on('request', async (req, res) => {
 
         if (! await runMiddlewares(req, res, 
             [
+                handleCORS,
                 setDefaultHeaders,
                 parseUrl,
                 matchRoute

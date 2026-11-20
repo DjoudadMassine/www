@@ -4,7 +4,11 @@
 require_once CORE . '/Database.php';
 require_once SRC . '/ProductDAL.php';
 
+require_once VENDOR . '/RentalFleet/API.php';
+
 $connexion = Database::getConnexion($dbConfig);
+
+$products = [];
 
 $search = $_GET['search'] ?? '';
 
@@ -19,6 +23,26 @@ if (!empty($search)) {
 
 }
 
+// Produits provenant de l'API
+$apiProducts = API::getProducts();
+
+foreach($apiProducts as $apiProduct) {
+
+    $products[] = [
+
+        'id' => $apiProduct['id'],
+        'title' => $apiProduct['name'],
+        'description' => '',
+        'image' => $apiProduct['picture'],
+        'alt' => '',
+        'price' => $apiProduct['price'],
+        'source' => 'api'
+
+    ];
+    
+} 
+// Fin produits API
+
 ?>
 <!--Ligne qui contient des colonnes-Row-->
 <div class="row">
@@ -30,12 +54,23 @@ if (!empty($search)) {
             
         <!--Carte-Card-->
         <div class="card mt-4 ">
-            <img src="<?= PRODUCT_IMG . '/' . $product['image'] ?>" class="card-img-top" alt="<?= $product['alt'] ?>">
-                        
+            
+            <?php 
+                // Déterminer sur quel domaine est l'image pour avoir le bon URL
+                $imgSource = PRODUCT_IMG;
+
+                if (!empty($product['source']) && $product['source'] == 'api'){
+                    $imgSource = API_CDN;
+                }
+            ?>
+            
+            <img src="<?= $imgSource . '/' . $product['image'] ?>" class="card-img-top" alt="<?= $product['alt'] ?>">
+            
             <div class="card-body d-flex flex-column">
                 
                 <h5 class="card-title"><?= $product['title'] ?></h5>
                 <p class="card-text "><?= $product['description'] ?></p>                
+                <p class="card-text "><?= $product['price'] ?> $</p>                
                 
                 <?php if (IS_USER) : ?>
                 <a href="" class="btn btn-primary mt-auto align-self-start">Ajouter au panier</a>

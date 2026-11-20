@@ -1,4 +1,4 @@
-export const DB_ERROR_CODES = Object.freeze({
+const DB_ERROR_CODES = Object.freeze({
 
   // ─── Connector Codes (err.code) ───────────────────────────────────────────
 
@@ -37,3 +37,5 @@ export const DB_ERROR_CODES = Object.freeze({
   SERVER_SHUTDOWN:      1053, // ER_SERVER_SHUTDOWN       - server going down
 
 });
+
+export default DB_ERROR_CODES;

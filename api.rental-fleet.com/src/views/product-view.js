@@ -5,7 +5,9 @@ const ProductView = {
         return {
 
             id: product.id,
-            name: product.name
+            name: product.name,
+            picture: product.picture,
+            price: product.price
 
         };
 

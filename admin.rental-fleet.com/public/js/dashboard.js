@@ -1,4 +1,5 @@
 import selectTab from "./tools.js";
+import ProductTab from "./product-tab.js";
 
 //=== Bind Events ===
 
@@ -44,6 +45,8 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+
+// Liaisn de l'événement associé à la soumission du formulaire ce connexion
 const loginForm = document.querySelector('#profile #login-form');
 loginForm.addEventListener('submit', async (event) => {
         
@@ -69,6 +72,7 @@ loginForm.addEventListener('submit', async (event) => {
 
 });
 
+
 //=== Tab on load functions ===
 
 async function homeTab(){
@@ -90,7 +94,12 @@ async function truckTab(){
 }
 
 async function productTab(){
+    
     console.log('productTab');
+    ProductTab.createProductSubmitBindEvent();
+    // await ProductTab.myList();    
+    await ProductTab.loadList();    
+
 }
 
 async function profileTab(){

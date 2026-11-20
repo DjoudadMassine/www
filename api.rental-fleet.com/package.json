@@ -8,17 +8,17 @@
     "dev": "node --env-file=.env --watch src/index.js"
   },
   "imports": {
+    "#config": "./src/configs/index.js",
+    "#infrastructure/*": "./src/infrastructure/*",
+    "#models/*": "./src/models/*",
+    
     "#controllers/*": "./src/controllers/*",
     "#middlewares/*": "./src/middlewares/*",
     "#routes/*": "./src/routes/*",
     "#utils/*": "./src/utils/*",
-    "#views/*": "./src/views/*",
-    "#config": "./src/configs/index.js",
-    "#infrastructure": "./src/infrastructure/*",
-    "#models": "./src/models/*"
-
+    "#views/*": "./src/views/*"
   },
   "dependencies": {
-    "mariadb": "^3.5.3"
+    "mariadb": "^3.5.4"
   }
 }

@@ -1,0 +1,23 @@
+{
+  "name": "api.pfi.com",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node --env-file=.env src/index.js",
+    "dev": "node --env-file=.env --watch src/index.js"
+  },
+  "imports": {
+    "#configurations/*": "./src/configurations/*",
+    "#mvc-controllers/*": "./src/mvc-controllers/*",
+    "#mvc-models/*": "./src/mvc-models/*",
+    "#middlewares/*": "./src/middlewares/*",
+    "#mvc-routes/*": "./src/mvc-routes/*",
+    "#mvc-views/*": "./src/mvc-views/*",
+    "#services/*": "./src/services/*",
+    "#tools": "./src/tools/index.js"
+  },
+  "dependencies": {    
+    "mariadb": "^3.5.3"
+  }
+}

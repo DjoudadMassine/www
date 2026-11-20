@@ -5,7 +5,7 @@ class ProductDAL
 
     public static function selectAll(PDO $connexion): array {
 
-        $sql = "SELECT id, title, description, image, alt from product";
+        $sql = "SELECT id, title, description, image, alt, price from product";
 
         $statement = $connexion->prepare($sql); 
              
@@ -34,7 +34,7 @@ class ProductDAL
     
     public static function selectByTitle(PDO $connexion, string $search): array {
 
-        $sql = "SELECT id, title, description, image, alt from product where lower(title) like :search";
+        $sql = "SELECT id, title, description, image, alt, price from product where lower(title) like :search";
 
         $statement = $connexion->prepare($sql); 
 

@@ -1,26 +1,29 @@
+import pool from '#infrastructure/db.js';
+import { handleDBError } from "#utils/handle-db-errors.js";
+
 const ProductModel = {
 
     selectAll: async () => {
 
         try {
-            
+
             const query = `SELECT id, name, picture, price FROM product`;
 
             const rows = await pool.query(query);
-            
+
             return rows; // MariaDB retourne un tableau de résultats
 
-        } catch(err) {
+        } catch (err) {
 
             handleDBError(err);
 
-        }  
+        }
     },
 
     selectById: async (id) => {
-        
-        try{
-            
+
+        try {
+
             /* 
                 
                 En JS, si on construit un objet en ne passant que des variables, ça va créer des attributs
@@ -52,16 +55,90 @@ const ProductModel = {
             const [row] = await pool.query("SELECT id, name, picture, price FROM product WHERE id = :id", params);
             return row; // MariaDB retourne un tableau de résultats
 
-        } catch(err) {
+        } catch (err) {
 
             handleDBError(err);
-            
-        }  
+
+        }
     },
 
-    
-    
-    
+    insertOne: async (name, picture, price) => {
+        try {
+            const params = {
+                name,
+                picture,
+                price
+            }
+            const result = await pool.query("insert into product (name, picture, price) values (:name, :picture, :price);", params);
+
+            return Number(result.insertId)
+
+        }
+        catch (err) {
+            handleDBError(err);
+        }
+
+    },
+
+    deleteOne: async (id) => {
+        try {
+            const params = {
+                id
+            }
+            const result = await pool.query("delete from product where id = (:id);", params);
+            return result.affectedRows > 0; //MariaDB retourne
+        }
+        catch (error) {
+            handleDBError(err);
+        }
+    },
+    updateById: async (id, name, picture, price) => {
+
+        try {
+
+            const params = {
+                id,
+                name,
+                picture,
+                price
+            };
+
+            const result = await pool.query("update product set name = :name, picture = :picture, price = :price where id = :id", params);
+            return result.affectedRows > 0;
+
+        } catch (err) {
+
+            handleDBError(err);
+
+        }
+
+    },
+    modifyById: async (id, data) => {
+
+        const params = {
+            id,
+            ...data
+        };
+
+        try {
+
+            const fields = Object.entries(data)
+                .map(([key]) => `${key} = :${key}`)
+                .join(', ');
+
+            const query = "update product set " + fields + " where id = :id";
+
+            const result = await pool.query(query, params);
+            return result.affectedRows > 0;
+
+        } catch (err) {
+
+            handleDBError(err);
+
+        }
+
+    }
+
 };
 
 export default ProductModel;

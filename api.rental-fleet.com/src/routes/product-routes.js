@@ -12,7 +12,32 @@ export const productRoutes = [
         pattern: '/products/:id',
         method: 'GET',
         handler: ProductController.show
-    }
+    },
+
+    { 
+        pattern: '/products',
+        method: 'POST',
+        handler: ProductController.create
+    },
+
+    {
+        pattern: '/products/:id',
+        method: 'DELETE',
+        handler: ProductController.delete
+    },
+
+    {
+        pattern: '/products/:id',
+        method: 'PUT',
+        handler: ProductController.update
+    },
+
+    {
+        pattern: '/products/:id',
+        method: 'PATCH',
+        handler: ProductController.modify
+    },
+
 
 ];
 
